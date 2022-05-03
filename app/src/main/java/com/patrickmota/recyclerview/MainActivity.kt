@@ -36,8 +36,18 @@ class MainActivity : AppCompatActivity() {
             openLink(live.link)
         }
 
-        recyclerview.layoutManager = LinearLayoutManager(this@MainActivity)
-        recyclerview.adapter = this.liveAdapter
+        //recyclerview.layoutManager = LinearLayoutManager(this@MainActivity)
+        //recyclerview.adapter = this.liveAdapter
+
+        /*
+        * Forma otimizada do comentario anterior
+        *
+        * Aqui tambem se usa Unit function igual a classe LiveAdapter
+        * */
+        recyclerview.apply {
+            layoutManager = LinearLayoutManager(this@MainActivity)
+            adapter = liveAdapter
+        }
     }
 
     private fun openLink(url: String) {
