@@ -4,6 +4,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.patrickmota.recyclerview.models.Live
 import kotlinx.android.synthetic.main.res_item_live.view.*
 
@@ -46,7 +48,7 @@ class LiveAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     /*
     * Aqui que sera feito o preenchimento de dados para ser listados
     * */
-    fun setDataSet(lives: List<Live>){
+    fun setDataSet(lives: List<Live>) {
         this.items = lives
     }
 
@@ -70,6 +72,14 @@ class LiveAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             liveTitle.text = live.title
             liveAuthor.text = live.author
 
+            val requestOptions = RequestOptions()
+                .placeholder(R.drawable.ic_launcher_background)
+                .error(R.drawable.ic_launcher_background)
+
+            Glide.with(itemView.context)
+                .applyDefaultRequestOptions(requestOptions)
+                .load(live.thumbnailUrl)
+                .into(liveThumbnail)
 
         }
 
